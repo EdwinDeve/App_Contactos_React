@@ -3,10 +3,9 @@ import { View, Text, FlatList, Image, TouchableOpacity, RefreshControl } from 'r
 import { useNavigation } from '@react-navigation/native';
 
 import { db } from '../../Data/Firebase';
-
 import { estilos } from './Estilos';
 
-import { FontAwesome5 } from '@expo/vector-icons';
+
 
 
 
@@ -41,7 +40,7 @@ function Contactos() {
 
       <TouchableOpacity onPress={() => {
         console.log('Seleccionado ' + item.Nombre);
-        Navegacion.navigate('Detalles', { Contacto: item });
+        // Navegacion.navigate('Detalles', { Contacto: item });
       }}>
 
 

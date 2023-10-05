@@ -2,7 +2,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-
     apiKey: "AIzaSyAlLQ51dgKFhBx5IDndpXuKBzP_DvPcLs4",
     authDomain: "apprn-contactos.firebaseapp.com",
     projectId: "apprn-contactos",

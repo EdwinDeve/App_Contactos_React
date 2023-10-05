@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -24,6 +23,8 @@ const Tab = createBottomTabNavigator()
 const ListadoStack = createNativeStackNavigator();
 
 function ContactosStack() {
+
+
   return (
     <ListadoStack.Navigator
       initialRouteName='Contactos'
@@ -36,10 +37,12 @@ function ContactosStack() {
           headerTitleStyle: { fontWeight: 'bold' },
         }}
       />
+
       <ListadoStack.Screen
         name='Detalles'
         component={DetallesContacto}
       />
+
     </ListadoStack.Navigator>
   )
 }
