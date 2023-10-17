@@ -76,5 +76,6 @@ export default function DetallesContacto({route}) {
       <View style={estilos.RayaHorizontal}></View>
       <Informacion></Informacion>
     </View>
+      
   )
 }

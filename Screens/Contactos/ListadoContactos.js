@@ -5,10 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { db } from '../../Data/Firebase';
 import { estilos } from './Estilos';
 
-
-
-
-
 function Contactos() {
   const Navegacion = useNavigation()
   const [contactos, setContactos] = useState([]);
@@ -17,7 +13,6 @@ function Contactos() {
   useEffect(() => {
     obtenerContactos();
   }, []);
-
 
   const obtenerContactos = async () => {
     try {
@@ -33,26 +28,23 @@ function Contactos() {
     }
   };
 
-
   const Listado = ({ item }) => (
 
     <View style={estilos.Contenedor}>
 
       <TouchableOpacity onPress={() => {
         console.log('Seleccionado ' + item.Nombre);
-        // Navegacion.navigate('Detalles', { Contacto: item });
+        Navegacion.navigate('Detalles', { Contacto: item });
       }}>
 
 
         <View style={estilos.Row}>
-
           <View>
             <Image
               source={{ uri: item.Img }}
               style={estilos.PerfilImage}
             />
           </View>
-
           <View style={estilos.RayaVert}></View>
 
           <View style={estilos.infoContacto}>

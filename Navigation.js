@@ -11,7 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 //Screens
 import HomeScreen from './Screens/MainScreens/HomeScreen'
-import AboutScreen from './Screens/MainScreens/AboutScreen'
+// import AboutScreen from './Screens/MainScreens/AboutScreen'
 
 //LitadoScreens
 import ListadoContactos from './Screens/Contactos/ListadoContactos'
