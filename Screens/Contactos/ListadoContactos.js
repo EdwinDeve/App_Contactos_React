@@ -28,7 +28,7 @@ function Contactos() {
     }
   };
 
-  const Listado = ({ item }) => (
+  const Listado = ({ item }) => ( 
 
     <View style={estilos.Contenedor}>
 
@@ -38,13 +38,14 @@ function Contactos() {
       }}>
 
 
-        <View style={estilos.Row}>
+        <View style={estilos.Row} >
           <View>
             <Image
               source={{ uri: item.Img }}
               style={estilos.PerfilImage}
             />
           </View>
+          
           <View style={estilos.RayaVert}></View>
 
           <View style={estilos.infoContacto}>

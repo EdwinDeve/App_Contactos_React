@@ -1,10 +1,14 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import {estilos} from './Estilos'
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function DetallesContacto({route}) {
+
+  const Navegador = useNavigation();
 
   const {Contacto} = route.params;
 
@@ -28,6 +32,7 @@ export default function DetallesContacto({route}) {
         <View style={estilos.contenedorIconoOpciones}>
           <TouchableOpacity onPress={() => {
             console.log('Editar a ' + Contacto.Nombre)
+            Navegador.navigate('Editar', {contactoEditar:Contacto} )
           }} >
             <MaterialIcons name="edit" size={24} color="black" />
           </TouchableOpacity>

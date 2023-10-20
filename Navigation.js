@@ -17,6 +17,7 @@ import HomeScreen from './Screens/MainScreens/HomeScreen'
 import ListadoContactos from './Screens/Contactos/ListadoContactos'
 import DetallesContacto from './Screens/Contactos/DetallesContacto'
 import AddContacto from './Screens/Contactos/CrearContacto'
+import EditarContacto from './Screens/Contactos/EditarContacto'
 
 const Tab = createBottomTabNavigator()
 
@@ -41,6 +42,11 @@ function ContactosStack() {
       <ListadoStack.Screen
         name='Detalles'
         component={DetallesContacto}
+      />
+
+      <ListadoStack.Screen
+        name='Editar'
+        component={EditarContacto}
       />
 
     </ListadoStack.Navigator>

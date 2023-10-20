@@ -1,9 +1,8 @@
-import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput,  TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { db } from '../../Data/Firebase';
 import { estilos } from './Estilos';
 
-import { Contactos } from '../Contactos/ListadoContactos'
 
 
 const ContactosForm = () => {
@@ -11,6 +10,7 @@ const ContactosForm = () => {
   const [mail, setMail] = useState('');
   const [nombre, setNombre] = useState('');
   const [tel, setTel] = useState('');
+  const [id, setId] = useState('');
   const [Guardado, setGuardado] = useState(false);
 
   const guardarEnFirebase = () => {
@@ -19,6 +19,7 @@ const ContactosForm = () => {
       Mail: mail,
       Nombre: nombre,
       Tel: tel,
+      id: id,
     };
 
     db.collection('Contactos')
@@ -28,9 +29,9 @@ const ContactosForm = () => {
         setMail('')
         setNombre('')
         setTel('')
+        setId('')
         setGuardado(true)
         console.log('Datos guardados correctamente en Firestore');
-        // Puedes restablecer los estados aquí si lo deseas
       })
       .catch((error) => {
         console.error('Error al guardar datos en Firestore:', error);
