@@ -1,7 +1,10 @@
 import { View, Text, TextInput,  TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { db } from '../../Data/Firebase';
 import { estilos } from './Estilos';
+
+import { db } from '../../Data/Firebase';
+import base64 from 'react-native-base64';
+
 
 
 
@@ -14,6 +17,11 @@ const ContactosForm = () => {
   const [Guardado, setGuardado] = useState(false);
 
   const guardarEnFirebase = () => {
+
+    setId(encryptNombre(nombre))
+
+    console.log(id)
+
     const datos = {
       Img: img,
       Mail: mail,
@@ -22,24 +30,30 @@ const ContactosForm = () => {
       id: id,
     };
 
-    db.collection('Contactos')
-      .add(datos)
-      .then(() => {
-        setImg('')
-        setMail('')
-        setNombre('')
-        setTel('')
-        setId('')
-        setGuardado(true)
-        console.log('Datos guardados correctamente en Firestore');
-      })
-      .catch((error) => {
-        console.error('Error al guardar datos en Firestore:', error);
-      });
+
+    // db.collection('Contactos')
+    //   .add(datos)
+    //   .then(() => {
+    //     setImg('')
+    //     setMail('')
+    //     setNombre('')
+    //     setTel('')
+    //     setId('')
+    //     setGuardado(true)
+    //     console.log('Datos guardados correctamente en Firestore');
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error al guardar datos en Firestore:', error);
+    //   });
+    
   };
 
   const ocultarmensaje = () => {
     setGuardado(false);
+  }
+
+  const encryptNombre = (nombre) => {
+    return base64.encode(nombre)
   }
 
   return (
