@@ -18,7 +18,7 @@ const ContactosForm = () => {
 
   const guardarEnFirebase = () => {
 
-    setId(encryptNombre(nombre))
+    // setId(encryptNombre(nombre))
 
     console.log(id)
 
@@ -31,20 +31,20 @@ const ContactosForm = () => {
     };
 
 
-    // db.collection('Contactos')
-    //   .add(datos)
-    //   .then(() => {
-    //     setImg('')
-    //     setMail('')
-    //     setNombre('')
-    //     setTel('')
-    //     setId('')
-    //     setGuardado(true)
-    //     console.log('Datos guardados correctamente en Firestore');
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error al guardar datos en Firestore:', error);
-    //   });
+    db.collection('Contactos')
+      .add(datos)
+      .then(() => {
+        setImg('')
+        setMail('')
+        setNombre('')
+        setTel('')
+        setId('')
+        setGuardado(true)
+        console.log('Datos guardados correctamente en Firestore');
+      })
+      .catch((error) => {
+        console.error('Error al guardar datos en Firestore:', error);
+      });
     
   };
 
@@ -52,14 +52,23 @@ const ContactosForm = () => {
     setGuardado(false);
   }
 
-  const encryptNombre = (nombre) => {
-    return base64.encode(nombre)
+  const encryptNombre = (username) => {
+    setNombre(username)
+    setId(base64.encode(username))
   }
 
   return (
     <View style={estilos.ContenedorForm}>
 
 
+
+      <TextInput
+        placeholder="ID"
+        value={id}
+        editable = {false}
+        style={estilos.FormInput}
+      />
+      <View style={{ height: 20 }}></View>
 
       <TextInput
         placeholder="URL de la imagen"
@@ -75,10 +84,14 @@ const ContactosForm = () => {
         style={estilos.FormInput}
       />
       <View style={{ height: 20 }}></View>
+
+      {/* Nombre */}
       <TextInput
         placeholder="Nombre"
         value={nombre}
-        onChangeText={setNombre}
+        onChangeText={(sexo)=>{
+          encryptNombre(sexo)
+        }}
         style={estilos.FormInput}
       />
       <View style={{ height: 20 }}></View>
