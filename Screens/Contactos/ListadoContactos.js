@@ -19,7 +19,11 @@ function Contactos() {
 
       const contactosRef = db.collection('Contactos');
       const snapshot = await contactosRef.get();
-      const ContactosData = snapshot.docs.map((doc) => doc.data());
+      const ContactosData = snapshot.docs.map((doc) => ({
+        documentID: doc.id,
+        ...doc.data()
+      }));
+      console.log(ContactosData);
       setContactos(ContactosData);
       setcargando(false);
       

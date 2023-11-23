@@ -1,47 +1,49 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { estilos } from './Estilos';
+import {db} from '../../Data/Firebase'
 
 
 
 export default function EditarContacto({route}) {
 
     const {contactoEditar} = route.params;  
-
+    const Navegador = useNavigation();
 
     const ContactosForm = () => {
       const [img, setImg] = useState(contactoEditar.Img);
       const [mail, setMail] = useState(contactoEditar.Mail);
       const [nombre, setNombre] = useState(contactoEditar.Nombre);
       const [tel, setTel] = useState(contactoEditar.Tel);
+      const [idContacto] = useState(contactoEditar.id);
+
       const [Guardado, setGuardado] = useState(false);
     
       const guardarEnFirebase = () => {
-        const datos = {
+        const datosEditar = {
           Img: img,
           Mail: mail,
           Nombre: nombre,
           Tel: tel,
+          id: idContacto,
         };
-    
-        db.collection('Contactos')
-          .add(datos)
-          .then(() => {
-            setImg('')
-            setMail('')
-            setNombre('')
-            setTel('')
-            setGuardado(true)
-            console.log('Datos guardados correctamente en Firestore');
-            // Puedes restablecer los estados aquí si lo deseas
-          })
-          .catch((error) => {
-            console.error('Error al guardar datos en Firestore:', error);
-          });
+
+        const Ref = db.collection('Contactos');
+        const DocEditar = Ref.doc(contactoEditar.documentID)
+
+        DocEditar.update(datosEditar)
+        .then(() => {
+          setGuardado(true)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
       };
     
       const ocultarmensaje = () => {
         setGuardado(false);
+        Navegador.navigate('Contactos')
       }
     
       return (
@@ -72,7 +74,7 @@ export default function EditarContacto({route}) {
           <View style={{ height: 20 }}></View>
           <TextInput
             placeholder="Teléfono"
-            value={tel}
+            value={tel.toString()}
             onChangeText={setTel}
             style={estilos.FormInput}
           />
